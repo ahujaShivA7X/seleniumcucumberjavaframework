@@ -59,7 +59,7 @@ Make sure you have installed Java 8 version 8, Maven version 3.3.1 or higher.
 
 Clone this repo and verify compile
 ```xml
-git clone  
+git clone https://github.com/ahujaShivA7X/seleniumcucumberjavaframework.git
 cd path  
 mvn clean compile test 
 ```
