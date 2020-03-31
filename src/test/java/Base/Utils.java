@@ -1,6 +1,7 @@
 package Base;
 
 import com.aventstack.extentreports.ExtentReports;
+import org.junit.Assert;
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
@@ -9,6 +10,7 @@ import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
+import org.testng.asserts.Assertion;
 
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
@@ -24,6 +26,8 @@ public class Utils {
         public static FileInputStream fis = null;
         public static String reportLocation = "C:\\Users\\ahuja\\reports";
         public ExtentReports extent;
+
+        WebDriverWait wait = new WebDriverWait(driver, 10);
 
         //default constructor
         public Utils() {
@@ -61,9 +65,9 @@ public class Utils {
 
         //Choose the browser where you want to test
         public void openBrowser(String browser) {
-            if (config.getProperty("browserType").equalsIgnoreCase("Mozilla"))
+            if (browser.equalsIgnoreCase("Mozilla"))
                 driver = new FirefoxDriver();
-            else if (config.getProperty("browserType").equalsIgnoreCase("Chrome")) {
+            else if (browser.equalsIgnoreCase("Chrome")) {
                 System.setProperty("webdriver.chrome.driver", "drivers/chromedriver.exe");
                 driver = new ChromeDriver();
             }
@@ -74,17 +78,27 @@ public class Utils {
 
         // navigate to any URL
         public void navigate(String url) {
-            driver.get(config.getProperty(url));
+
+            driver.get(url);
+            try{
+                Assert.assertEquals(url, driver.getCurrentUrl());
+                System.out.println("Navigated to correct webpage");
+            }
+            catch(Throwable pageNavigationError){
+                System.out.println("Didn't navigate to correct webpage");
+            }
         }
 
         // click on any object
         public void click(String object) {
-            driver.findElement(By.xpath(OR.getProperty(object))).click();
+
+            wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(OR.getProperty(object)))).click();
         }
 
         // writing in a text field / select value from a list
         public void input(String object, String data) {
-            driver.findElement(By.xpath(OR.getProperty(object))).sendKeys(data);
+
+            wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(OR.getProperty(object)))).sendKeys(data);
         }
 
         // checking the presence of a particular element

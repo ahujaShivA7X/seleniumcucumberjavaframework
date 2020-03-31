@@ -20,8 +20,10 @@ public class LoginStepdefs extends Utils {
     }
 
     @And("^I enter 'companyName' as \"([^\"]*)\"$")
-    public void iEnterCompanyNameAs(String arg0) throws Throwable {
-
+    public void iEnterCompanyNameAs(String cityName) throws Throwable {
+       base.click("FromCityButton");
+       // base.click(arg0);
+        base.input("FromCityPlaceholder", cityName);
     }
 
     @And("^I type 'inslyAdd' as \"([^\"]*)\"$")
