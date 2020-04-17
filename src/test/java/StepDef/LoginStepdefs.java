@@ -1,52 +1,60 @@
 package StepDef;
 
 import Base.Utils;
+import Pages.PageObjects;
 import cucumber.api.DataTable;
 import cucumber.api.PendingException;
 import cucumber.api.java.en.And;
 import cucumber.api.java.en.Given;
 import cucumber.api.java.en.Then;
+import org.openqa.selenium.By;
+import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.support.ui.WebDriverWait;
 
 public class LoginStepdefs extends Utils {
 
     Utils base = new Utils();
 
+    PageObjects pom = new PageObjects();
 
-    @Given("^Open \"([^\"]*)\" and navigate to Insly login \"([^\"]*)\"$")
-    public void openAndNavigateToInslyLogin(String browser, String url) throws Throwable {
-        base.openBrowser(browser);
-        base.navigate(url);
+
+    @Given("^Go to the website \"([^\"]*)\"$")
+    public void go_to_the_website_something(String strArg1) throws Throwable {
+        openBrowser("Chrome");
+        navigate(strArg1);
+    }
+
+    @And("^Click on the button \"([^\"]*)\"$")
+    public void click_on_the_button_something(String strArg1) throws Throwable {
+        pom.clickSignIn();
 
     }
 
-    @And("^I enter 'companyName' as \"([^\"]*)\"$")
-    public void iEnterCompanyNameAs(String cityName) throws Throwable {
-       base.click("FromCityButton");
-       // base.click(arg0);
-        base.input("FromCityPlaceholder", cityName);
-    }
-
-    @And("^I type 'inslyAdd' as \"([^\"]*)\"$")
-    public void iTypeInslyAddAs(String arg0) throws Throwable {
+    @Then("^validate the message \"([^\"]*)\"$")
+    public void validate_the_message_something(String strArg1) throws Throwable {
+        //driver.findElement(By.xpath("//a[contains(text(),'Sign In')]")).click();
 
     }
 
-    @And("^I select company profile as \"([^\"]*)\"$")
-    public void iSelectCompanyProfileAs(String arg0) throws Throwable {
+    @And("^enter email id as \"([^\"]*)\"$")
+    public void enter_email_id_as_something(String strArg1) throws Throwable {
+        pom.enterUsername(strArg1);
 
     }
 
-    @And("^I select country as 'India'$")
-    public void iSelectCountryAsIndia() {
+    @And("^enter the password as \"([^\"]*)\"$")
+    public void enter_the_password_as_something(String strArg1) throws Throwable {
+       // driver.findElement(By.id("user_pass")).sendKeys(strArg1);
+        pom.enterPassword(strArg1);
+
     }
 
-    @And("^I select Number of employees as '(\\d+)-(\\d+)'$")
-    public void iSelectNumberOfEmployeesAs(int arg0, int arg1) {
+    @And("^Uncheck the option \"([^\"]*)\"$")
+    public void uncheck_the_option_something(String strArg1) throws Throwable {
+
     }
 
-    @Then("^I select myself as 'A tech guy'$")
-    public void iSelectMyselfAsATechGuy() {
-    }
+
 
 
 }

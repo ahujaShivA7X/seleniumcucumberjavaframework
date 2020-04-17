@@ -2,10 +2,10 @@ Feature: Login
   Navigate to a website and validate its login functionality
 
   Scenario: Validate login of MakeMyTrip
-    Given Open "Chrome" and navigate to Insly login "https://www.makemytrip.com/"
-    And I enter 'companyName' as "Warsaw"
-    And I type 'inslyAdd' as "shiva"
-    And I select company profile as "Software Developer Insurance"
-    And I select country as 'India'
-    And I select Number of employees as '1-5'
-    Then I select myself as 'A tech guy'
+   # Given Open "Chrome" and navigate to Insly login "https://www.makemytrip.com/"
+    Given Go to the website "https://www.katalon.com/"
+    And Click on the button "Sign In"
+    And enter email id as "luxoft@test.com"
+    And enter the password as "teste1234"
+    And Uncheck the option "Remember me"
+    Then validate the message "Incorrect email or password. Please try again"

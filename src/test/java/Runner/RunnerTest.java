@@ -2,8 +2,8 @@ package Runner;
 
 /**
  * @author Shivansh Ahuja
- *
- *	29-Aug-2019
+ * <p>
+ * 29-Aug-2019
  */
 
 import com.cucumber.listener.Reporter;
@@ -17,7 +17,7 @@ import java.io.File;
 @RunWith(Cucumber.class)
 @CucumberOptions(
         features = "src/test/java/Features",
-        plugin = { "pretty", "json:target/cucumber-reports/Cucumber.json",
+        plugin = {"pretty", "json:target/cucumber-reports/Cucumber.json",
                 "junit:target/cucumber-reports/Cucumber.xml",
                 "html:target/cucumber-reports",
                 "com.cucumber.listener.ExtentCucumberFormatter:output/report.html"},
